@@ -1,5 +1,5 @@
 # Boris Bikes #
-A program to manage Boris bikes. Monday branch.
+A program to manage Boris bikes. Tuesday branch.
 
 ### How to use ###
 ```shell
