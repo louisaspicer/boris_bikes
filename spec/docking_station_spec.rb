@@ -39,5 +39,15 @@ describe DockingStation do
     expect(subject.all_bikes.length).to eq 1
   end
 
+  it 'removes a bike when a bike is released' do
+    subject.all_bikes = ["Louisa", "Jenna"]
+    subject.release_bike
+    expect(subject.all_bikes.length).to eq 1
+  end
+
+  it 'sets a default docking station capacity to 20' do
+    expect(subject.capacity).to eq 20
+  end
+
 
 end

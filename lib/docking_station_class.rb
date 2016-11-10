@@ -10,9 +10,9 @@ class DockingStation
   end
 
   def release_bike
-    raise(RuntimeError, "No bikes available") if @all_bikes.length == 0
+    raise(RuntimeError, "No bikes available") if empty?
     generate_bike
-
+    @all_bikes.pop
   end
 
   def generate_bike
@@ -21,8 +21,16 @@ class DockingStation
 
 
   def dock(bike)
-    raise(RuntimeError, "Docking station full") if @all_bikes.length == @capacity
+    raise(RuntimeError, "Docking station full") if full?
     @all_bikes << bike
   end
 
+  private
+    def full?
+      @all_bikes.length == @capacity
+    end
+
+    def empty?
+      @all_bikes.length == 0
+    end
 end
