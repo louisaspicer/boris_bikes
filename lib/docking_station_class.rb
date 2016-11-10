@@ -2,15 +2,15 @@ require './lib/bike.rb'
 
 class DockingStation
 
-  attr_reader :bike
-  attr_accessor :capacity
+  attr_accessor :capacity, :all_bikes
 
-  def initialize(capacity = 0)
+  def initialize(capacity = 20)
     @capacity = capacity
+    @all_bikes = []
   end
 
   def release_bike
-    raise(RuntimeError, "No bikes available") if check_for_bikes == false
+    raise(RuntimeError, "No bikes available") if @all_bikes.length == 0
     generate_bike
 
   end
@@ -19,13 +19,10 @@ class DockingStation
     Bike.new
   end
 
-  def check_for_bikes
-    false
-  end
 
   def dock(bike)
-    raise(RuntimeError, "Docking station full") if capacity == 1
-    @bike = bike
+    raise(RuntimeError, "Docking station full") if @all_bikes.length == @capacity
+    @all_bikes << bike
   end
 
 end
