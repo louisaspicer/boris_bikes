@@ -1,9 +1,19 @@
 require './lib/docking_station_class.rb'
 
 class Bike
+  attr_accessor :broken
+
+  def initialize(working = true)
+    @working = working
+  end
 
   def working?
-   true
+   @working
   end
+
+  def report_as_broken
+    @working = false
+  end
+
 
 end
