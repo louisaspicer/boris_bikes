@@ -4,9 +4,9 @@ describe DockingStation do
 
   it { is_expected.to respond_to :release_bike }
 
-  it { expect(DockingStation.new.release_bike).to be_an_instance_of(Bike) }
+  it { expect(subject.generate_bike).to be_an_instance_of(Bike) }
 
-  it { expect(DockingStation.new.release_bike.working?).to eq true }
+  it { expect(subject.generate_bike.working?).to eq true }
 
   it { is_expected.to respond_to :dock }
 
@@ -23,16 +23,8 @@ describe DockingStation do
     expect(subject.bike).to eq bike
   end
 
-  describe '#release_bike' do
-    it 'releases a bike' do
-      bike = Bike.new
-      subject.dock(bike)
-      expect(subject.release_bike).to eq bike
-    end
-  end
-
   it 'raises error if no bikes' do
-    expect { DockingStation.new.release_bike }.to raise_error(RuntimeError, "No bikes available")
+    expect { subject.release_bike }.to raise_error(RuntimeError, "No bikes available")
   end
 
 end
