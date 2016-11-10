@@ -7,18 +7,21 @@ class DockingStation
   def initialize(capacity = 20)
     @CAPACITY = capacity
     @all_bikes = []
+    generate_bike
+  end
+
+  def generate_bike
+    @CAPACITY.times do
+      @all_bikes << Bike.new
+    end
+    @all_bikes
   end
 
   def release_bike
     raise(RuntimeError, "No bikes available") if empty?
-    generate_bike
+    raise("Can't release broken bike") if !(@all_bikes[-1].working?)
     @all_bikes.pop
   end
-
-  def generate_bike
-    Bike.new
-  end
-
 
   def dock(bike)
     raise(RuntimeError, "Docking station full") if full?
