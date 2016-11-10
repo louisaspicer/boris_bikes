@@ -29,7 +29,7 @@ describe DockingStation do
 
   it 'raises error if docking station is full' do
     bike = Bike.new
-    20.times { subject.dock(bike) }
+    subject.CAPACITY.times { subject.dock(bike) }
     expect { subject.dock(bike) }.to raise_error(RuntimeError, "Docking station full")
   end
 
@@ -46,8 +46,12 @@ describe DockingStation do
   end
 
   it 'sets a default docking station capacity to 20' do
-    expect(subject.capacity).to eq 20
+    expect(subject.CAPACITY).to eq 20
   end
 
+  it 'allows user to set any capacity' do
+    station = DockingStation.new(30)
+    expect(station.CAPACITY).to eq 30
+  end
 
 end
